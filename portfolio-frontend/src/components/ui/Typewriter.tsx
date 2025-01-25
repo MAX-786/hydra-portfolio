@@ -12,6 +12,7 @@ export default function Typewriter({ words }: { words: string[] }) {
       setIndex(prev => (prev + 1) % words.length)
     }, 3000)
     return () => clearInterval(timer)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
