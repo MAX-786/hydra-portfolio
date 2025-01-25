@@ -1,9 +1,9 @@
-// components/sections/ProjectsSection.tsx
+
 'use client'
 
 import { motion } from 'framer-motion'
 
-export default function ProjectsSection({ projects }: { projects: any[] }) {
+export default function ProjectsSection({ }: { projects: unknown[] }) {
   return (
     <motion.div 
       className="max-w-4xl mx-auto"
