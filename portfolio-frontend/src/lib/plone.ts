@@ -10,3 +10,12 @@ export const ploneClient = (token = undefined) =>
     apiPath: process.env.NEXT_PUBLIC_PLONE_API_URL!,
     token: token,
   });
+
+export interface PloneContent {
+  projects: string[] // Replace with your Project type
+  skills: string[] // Replace with your Skill type
+  siteSettings: {
+    title: string
+    description: string
+  }
+}

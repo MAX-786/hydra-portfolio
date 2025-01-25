@@ -3,19 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-geist-sans: 'Space Grotesk', sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased bg-slate-900 text-slate-100;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-500 rounded-full;
+}
+
+.canvas-container {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+@keyframes liquid-move {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-30%, -70%) scale(1.2); opacity: 0.5; }
+  100% { transform: translate(-70%, -30%) scale(0.8); opacity: 0; }
+}
+
+.animate-liquid-move {
+  animation: liquid-move 2s infinite linear;
+  will-change: transform, opacity;
 }
