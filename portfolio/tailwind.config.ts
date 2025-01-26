@@ -12,11 +12,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      fontFamily: {
-        sans: ["var(--font-space-grotesk)"], // rem to add custom font
-      },
     },
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 } satisfies Config;
