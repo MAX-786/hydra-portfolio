@@ -10,8 +10,9 @@ interface NavToggleButtonProps {
 export default function NavToggleButton({ onClick, isNavVisible, showScrollNav }: NavToggleButtonProps) {
   return (
     <motion.button
+      aria-label="Toggle navigation"
       onClick={onClick}
-      className="fixed left-0 top-1/2 z-20 -translate-y-1/2 bg-blue-600 text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center overflow-hidden"
+      className="fixed left-0 top-1/2 z-20 -translate-y-1/2 bg-blue-600 text-white shadow-lg rounded-full w-12 h-12 flex flex-col items-end justify-center overflow-hidden"
       animate={{
         x: isNavVisible ? 256 : showScrollNav ? -48 : 0,
         width: isNavVisible ? 48 : 24,

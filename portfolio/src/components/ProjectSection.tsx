@@ -19,7 +19,7 @@ export default function ProjectSection(){
   },[]);
 
   return (
-    <section id="projects" className="py-16">
+    <section id="projects" className="py-16 h-[768]">
       <h2 className="mb-8 text-center text-3xl font-bold">Projects</h2>
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col items-center lg:flex-row">

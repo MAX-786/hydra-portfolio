@@ -14,7 +14,7 @@ export default function SkillsSection() {
     fetchSkills();
   }, []);
   return (
-    <section id="skills" className="py-16">
+    <section id="skills" className="py-16 h-[768px]">
       <h2 className="mb-8 text-center text-3xl font-bold">Skills</h2>
       <div className="mx-auto max-w-3xl">
         {skills.map((skill) => (
