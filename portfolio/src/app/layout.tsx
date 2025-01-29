@@ -1,28 +1,31 @@
-import { ReactNode } from 'react';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
-import { Inter, Roboto_Mono } from 'next/font/google';
+import "./globals.css"
+import { Inter } from "next/font/google"
+import AnimatedBackground from "../components/AnimatedBackground"
+import { ThemeProvider } from "../contexts/ThemeContext"
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
+const inter = Inter({ subsets: ["latin"] })
 
-const robotoMono = Roboto_Mono({
-  subsets: ['latin'],
-  variable: '--font-roboto-mono',
-});
+export const metadata = {
+  title: "Unique Portfolio",
+  description: "A unique portfolio design with vertical navigation",
+}
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
-      <body>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
-          <Footer />
-        </div>
+    <html lang="en">
+      <body
+        className={`${inter.className} bg-gray-100 dark:bg-gray-900 overflow-x-hidden transition-colors duration-200`}
+      >
+        <ThemeProvider>
+          <AnimatedBackground />
+          <div className="relative z-10">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
+

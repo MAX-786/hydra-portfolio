@@ -53,8 +53,13 @@ interface SkillListItem extends BaseItem {
   type_title: 'Skill';
 }
 
-interface ProjectDetails extends ProjectListItem {
-  UID: string;
+type Image = {
+  download: string;
+}
+
+export interface ProjectDetails extends ProjectListItem {
+  id: string;
+  image: Image;
   date: string;
   created: string;
   modified: string;
@@ -74,9 +79,10 @@ interface ProjectDetails extends ProjectListItem {
   };
 }
 
-interface SkillDetails extends SkillListItem {
-  UID: string;
-  confidence: number;
+export interface SkillDetails extends SkillListItem {
+  name: string;
+  id: string;
+  level: number;
   status: Array<{
     title: string;
     token: string;

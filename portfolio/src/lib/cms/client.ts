@@ -1,14 +1,10 @@
 import axios from 'axios';
 import { ListResponse, ProjectDetails, ProjectListItem, SkillDetails, SkillListItem } from '@/types/cms';
 const ploneClient = axios.create({
-  baseURL: process.env.CMS_URL,
+  baseURL: process.env.CMS_URL || "http://localhost:8080/my-portfolio/++api++",
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
-  },
-  auth: {
-    username: process.env.CMS_USER!,
-    password: process.env.CMS_PASSWORD!
   }
 });
 
@@ -42,8 +38,13 @@ export const getFullProjectList = async (): Promise<ProjectDetails[]> => {
 
 // Skill Service
 export const getSkillList = async (): Promise<ListResponse<SkillListItem>> => {
-  const response = await ploneClient.get<ListResponse<SkillListItem>>('/skills');
-  return response.data;
+  try {
+    const response = await ploneClient.get<ListResponse<SkillListItem>>('/skills');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching skill list:', error);
+    return { items: [] , items_total: 0 }; // Return empty array instead of throwing
+  }
 };
 
 export const getSkillDetails = async (item: SkillListItem): Promise<SkillDetails | null> => {

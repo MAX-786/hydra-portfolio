@@ -1,46 +1,67 @@
-import { getFullProjectList, getFullSkillList } from '@/services/cms/client';
-import ProjectCard from '@/components/common/ProjectCard';
+"use client"
 
-export default async function Home() {
-  const [projects, skills] = await Promise.all([
-    getFullProjectList(),
-    getFullSkillList()
-  ]);
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import VerticalNav from "../components/VerticalNav"
+import NavToggleButton from "../components/NavToggleButton"
+import ProjectSection from "../components/ProjectSection"
+import SkillsSection from "../components/SkillsSection"
+import BlogButton from "../components/BlogButton"
+import ThemeToggle from "../components/ThemeToggle"
+
+export default function Home() {
+  const [isNavVisible, setIsNavVisible] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const [showScrollNav, setShowScrollNav] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (Math.abs(currentScrollY - lastScrollY) > 20) {
+        setShowScrollNav(true)
+        setTimeout(() => setShowScrollNav(false), 1500)
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [lastScrollY])
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      {/* Projects Section */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-semibold mb-8">Featured Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.UID} project={project} />
-          ))}
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section>
-        <h2 className="text-3xl font-semibold mb-8">Technical Skills</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {skills.map((skill) => (
-            <div 
-              key={skill.UID}
-              className="bg-secondary p-4 rounded-lg"
-            >
-              <h3 className="font-medium mb-2">{skill.title}</h3>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-400">
-                  Confidence: {skill.confidence}/5
-                </span>
-                <span className="text-xs px-2 py-1 bg-accent/20 text-accent rounded-full">
-                  {skill.status[0]?.title}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+    <div className="min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-200">
+      <ThemeToggle />
+      <VerticalNav isVisible={isNavVisible || showScrollNav} />
+      <NavToggleButton
+        onClick={() => setIsNavVisible(!isNavVisible)}
+        isNavVisible={isNavVisible}
+        showScrollNav={showScrollNav}
+      />
+      <AnimatePresence>
+        {showScrollNav && !isNavVisible && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed left-0 top-0 z-10 h-full w-64"
+          >
+            <VerticalNav isVisible={true} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <main className="px-4 pt-16 sm:px-6 lg:px-8">
+        <section id="home" className="flex min-h-screen flex-col items-center justify-center text-center">
+          <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">Mohammad K. Hussain</h1>
+          <p className="mb-8 text-lg sm:text-xl md:text-2xl">
+            Software Developer | Open Source Gardener: <i>planting PRs, pruning Bugs</i>
+          </p>
+          <BlogButton />
+        </section>
+        <ProjectSection />
+        <SkillsSection />
+      </main>
+    </div>
+  )
 }
+
