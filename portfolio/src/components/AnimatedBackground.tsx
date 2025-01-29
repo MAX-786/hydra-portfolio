@@ -5,7 +5,7 @@ import { useTheme } from "../contexts/ThemeContext"
 
 const particles = [
   "Hi",
-  "Hello",
+  "Yahallo!",
   "もしもし",
   "Bonjour",
   "Hola",
@@ -100,7 +100,7 @@ export default function AnimatedBackground() {
         ctx.save()
         ctx.translate(this.x, this.y)
         ctx.rotate(this.angle)
-        ctx.font = "12px Arial"
+        ctx.font = "16px Arial"
         ctx.fillStyle = theme === "light" ? "rgba(55, 61, 240, 0.8)" : "rgba(200, 200, 255, 0.8)"
         ctx.fillText(this.text, -ctx.measureText(this.text).width / 2, 0)
         ctx.restore()
