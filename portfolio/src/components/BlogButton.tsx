@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function BlogButton() {
   return (
     <Link
-      href="/blog"
+      href="/garden"
       className="group relative inline-block overflow-hidden rounded-full dark:bg-blue px-8 py-3 text-white"
     >
       <span className="absolute inset-0 bg-black transition-transform duration-300 ease-out group-hover:translate-y-full dark:bg-white"></span>

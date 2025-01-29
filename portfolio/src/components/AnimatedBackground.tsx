@@ -70,7 +70,7 @@ export default function AnimatedBackground() {
         this.y = Math.random() * canvas.height
         this.text = particles[Math.floor(Math.random() * particles.length)]
         this.speedX = Math.random() * 3 - 1.5
-        this.speedY = Math.random() * 3 - 1.5
+        this.speedY = Math.random() * 3 - 1.2
         this.angle = 0
         this.rotationSpeed = (Math.random() - 0.5) *0.05
       }
