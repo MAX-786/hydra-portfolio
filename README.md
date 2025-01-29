@@ -20,7 +20,7 @@ Hydra aka volto-hydra is a proof-of-concept addon for Volto that decouples the f
 
 ```bash
 git clone https://github.com/MAX-786/hydra-portfolio
-cd portfolio
+cd hydra-portfolio
 ```
 2. Go to `portfolio` directory:
 ```bash
