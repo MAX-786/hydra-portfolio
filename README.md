@@ -19,11 +19,15 @@ Hydra aka volto-hydra is a proof-of-concept addon for Volto that decouples the f
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-repo/portfolio.git
+git clone https://github.com/MAX-786/hydra-portfolio
+cd portfolio
+```
+2. Go to `portfolio` directory:
+```bash
 cd portfolio
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 
 ```bash
 # npm
