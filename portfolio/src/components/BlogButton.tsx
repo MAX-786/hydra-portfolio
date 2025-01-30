@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link';
 
 export default function BlogButton() {
   return (
@@ -11,6 +11,5 @@ export default function BlogButton() {
         My Garden
       </span>
     </Link>
-  )
+  );
 }
-

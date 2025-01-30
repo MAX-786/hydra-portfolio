@@ -1,13 +1,17 @@
-import { motion } from "framer-motion"
-import { ChevronRight, ChevronLeft } from "lucide-react"
+import { motion } from 'framer-motion';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 interface NavToggleButtonProps {
-  onClick: () => void
-  isNavVisible: boolean
-  showScrollNav: boolean
+  onClick: () => void;
+  isNavVisible: boolean;
+  showScrollNav: boolean;
 }
 
-export default function NavToggleButton({ onClick, isNavVisible, showScrollNav }: NavToggleButtonProps) {
+export default function NavToggleButton({
+  onClick,
+  isNavVisible,
+  showScrollNav,
+}: NavToggleButtonProps) {
   return (
     <motion.button
       aria-label="Toggle navigation"
@@ -19,16 +23,15 @@ export default function NavToggleButton({ onClick, isNavVisible, showScrollNav }
         borderTopLeftRadius: isNavVisible ? 24 : 0,
         borderBottomLeftRadius: isNavVisible ? 24 : 0,
       }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
       <motion.div
         className="flex items-center justify-center w-12 h-12"
         animate={{ x: isNavVisible ? 0 : 6 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
         {isNavVisible ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
       </motion.div>
     </motion.button>
-  )
+  );
 }
-

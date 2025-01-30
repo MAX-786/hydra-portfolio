@@ -32,7 +32,7 @@ import {
 import { Form } from '@plone/volto/components/manage/Form';
 import {
   getBaseUrl,
-  hasBlocksData,
+  // hasBlocksData,
   flattenToAppURL,
   getBlocksFieldname,
   getBlocksLayoutFieldname,

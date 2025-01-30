@@ -1,10 +1,10 @@
-"use client";
-import { getFullSkillList } from "@/lib/cms/client";
-import { SkillDetails } from "@/types/cms";
-import { useEffect, useState } from "react";
+'use client';
+import { getFullSkillList } from '@/lib/cms/client';
+import { SkillDetails } from '@/types/cms';
+import { useEffect, useState } from 'react';
 
 export default function SkillsSection() {
-  const [ skills, setSkills ] = useState<SkillDetails[]>([]);
+  const [skills, setSkills] = useState<SkillDetails[]>([]);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -26,7 +26,8 @@ export default function SkillsSection() {
             <div className="mt-2 h-4 w-full rounded-full bg-gray-200 dark:bg-gray-700">
               <div
                 className="h-full rounded-full bg-blue-600 dark:bg-blue-400 transition-all duration-500 ease-out"
-                style={{ width: `${skill.level}%` }}></div>
+                style={{ width: `${skill.level}%` }}
+              ></div>
             </div>
           </div>
         ))}

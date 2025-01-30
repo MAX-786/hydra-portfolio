@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 
 import { Toast } from '@plone/volto/components';
 import { Form } from '@plone/volto/components/manage/Form';
+// eslint-disable-next-line import/no-unresolved
 import languages from '@plone/volto/constants/Languages';
 import { changeLanguage } from '@plone/volto/actions';
 import { toGettextLang } from '@plone/volto/helpers';

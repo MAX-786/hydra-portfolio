@@ -24,9 +24,9 @@ import { injectIntl } from 'react-intl';
 import Error from '@plone/volto/error';
 
 import {
-  Breadcrumbs,
-  Footer,
-  Header,
+  // Breadcrumbs,
+  // Footer,
+  // Header,
   Icon,
   OutdatedBrowser,
   AppExtras,
@@ -119,7 +119,7 @@ export class App extends Component {
    */
   render() {
     const { views } = config;
-    const path = getBaseUrl(this.props.pathname);
+    // const path = getBaseUrl(this.props.pathname);
     const action = getView(this.props.pathname);
     const isCmsUI = isCmsUi(this.props.pathname);
     const ConnectionRefusedView = views.errorViews.ECONNREFUSED;

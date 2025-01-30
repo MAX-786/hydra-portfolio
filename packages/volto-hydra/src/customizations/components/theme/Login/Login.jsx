@@ -180,10 +180,9 @@ const Login = (props) => {
                 - currently implemented features and tutorial.
               </p>
               <ul>
-                <li>Use "admin" and password "admin" to edit sites above</li> 
-                <li>User preferences: to Switch headless frontend</li> 
+                <li>Use "admin" and password "admin" to edit sites above</li>
+                <li>User preferences: to Switch headless frontend</li>
               </ul>
-
             </Segment>
           </Grid.Column>
         </Grid>

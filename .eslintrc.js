@@ -22,10 +22,7 @@ module.exports = {
             `${coreLocation}/core/packages/volto-slate/src`,
           ],
           ['@plone/registry', `${coreLocation}/packages/registry/src`],
-          [
-            'volto-hydra',
-            './packages/volto-hydra/src',
-          ],
+          ['volto-hydra', './packages/volto-hydra/src'],
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       },

@@ -55,7 +55,7 @@ interface SkillListItem extends BaseItem {
 
 type Image = {
   download: string;
-}
+};
 
 export interface ProjectDetails extends ProjectListItem {
   id: string;

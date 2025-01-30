@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { compose } from 'redux';
+// import { compose } from 'redux';
 import Cookies from 'js-cookie';
 import {
   applyBlockDefaults,
@@ -130,6 +130,7 @@ const Iframe = (props) => {
         },
         origin,
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedBlock]);
 
   const isInlineEditingRef = useRef(false);

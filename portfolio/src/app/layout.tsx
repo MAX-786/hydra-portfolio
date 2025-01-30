@@ -1,19 +1,20 @@
-import "./globals.css"
-import { Inter } from "next/font/google"
-import AnimatedBackground from "../components/AnimatedBackground"
-import { ThemeProvider } from "../contexts/ThemeContext"
+import './globals.css';
+import { Inter } from 'next/font/google';
+import AnimatedBackground from '../components/AnimatedBackground';
+import { ThemeProvider } from '../contexts/ThemeContext';
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "Mohammad K. Hussain",
-  description: "Software Developer | Open Source Gardener: planting PRs, pruning Bugs",
-}
+  title: 'Mohammad K. Hussain',
+  description:
+    'Software Developer | Open Source Gardener: planting PRs, pruning Bugs',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -26,6 +27,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
-
