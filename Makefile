@@ -46,7 +46,7 @@ build: ## Build a production bundle for distribution of the project with the add
 
 .PHONY: prod
 prod: ## Start Volto Hydra in production mode
-	pnpm build && RAZZLE_DEFAULT_IFRAME_URL=http://localhost:3002 RAZZLE_API_PATH=http://localhost:8080/my-portfolio pnpm start:prod
+	RAZZLE_DEFAULT_IFRAME_URL=http://localhost:3002 RAZZLE_API_PATH=http://localhost:8080/my-portfolio pnpm start:prod
 
 .PHONY: i18n
 i18n: ## Sync i18n
