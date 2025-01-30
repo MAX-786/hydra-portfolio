@@ -1,5 +1,7 @@
 # Portfolio Frontend
 
+<img src="demo.gif" width="250" height="250"/>
+
 This is a Next.js frontend project designed to integrate with the Volto Hydra decoupled editor for headless Plone. The current integration level is Level 1, with plans to advance to Level 3 in the future.
 
 ## What is Volot Hydra?
