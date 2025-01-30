@@ -4,33 +4,33 @@ import { useEffect, useRef } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const particles = [
-  'Hi',
-  'Yahallo!',
-  'もしもし',
-  'Bonjour',
-  'Hola',
-  '你好',
-  'Ciao',
-  'Olá',
-  'Привет',
-  'Hallo',
-  'Salut',
-  'Hej',
-  'Γεια',
-  'שלום',
-  'مرحبا',
-  'नमस्ते',
-  'Merhaba',
-  'Xin chào',
-  'السلام عليكم',
-  'Sawubona',
-  'Jambo',
-  'Dia dhuit',
-  'Tere',
-  'Sveiki',
-  'Zdravo',
-  'Ahoj',
-  'Kamusta',
+  'Hi!!!',
+  'Yahallo!!!!',
+  'もしもし!!!',
+  'Bonjour!!!',
+  'Hola!!!',
+  '你好!!!',
+  'Ciao!!!',
+  'Olá!!!',
+  'Привет!!!',
+  'Hallo!!!',
+  'Salut!!!',
+  'Hej!!!',
+  'Γεια!!!',
+  'שלום!!!',
+  '!!!مرحبا',
+  'नमस्ते!!!',
+  'Merhaba!!!',
+  'Xin chào!!!',
+  '!!!السلام عليكم',
+  'Sawubona!!!',
+  'Jambo!!!',
+  'Dia dhuit!!!',
+  'Tere!!!',
+  'Sveiki!!!',
+  'Zdravo!!!',
+  'Ahoj!!!',
+  'Kamusta!!!',
 ];
 
 export default function AnimatedBackground() {
@@ -66,8 +66,8 @@ export default function AnimatedBackground() {
       rotationSpeed: number;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * (canvas?.width || 0);
+        this.y = Math.random() * (canvas?.height || 0);
         this.text = particles[Math.floor(Math.random() * particles.length)];
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.2;
@@ -80,11 +80,11 @@ export default function AnimatedBackground() {
         this.y += this.speedY;
         this.angle += this.rotationSpeed;
 
-        if (this.x > canvas.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas.width;
+        if (this.x > (canvas?.width || 0)) this.x = 0;
+        else if (this.x < 0) this.x = (canvas?.width || 0);
 
-        if (this.y > canvas.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas.height;
+        if (this.y > (canvas?.height || 0)) this.y = 0;
+        else if (this.y < 0) this.y = (canvas?.height || 0);
 
         const dx = this.x - mouseX;
         const dy = this.y - mouseY;
