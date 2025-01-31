@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: mkh
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: nimda
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - plone-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    command: ["postgres", "-c", "hba_file=/var/lib/postgresql/data/pg_hba.conf"]
+
+  plone:
+    image: plone/plone-backend:latest
+    environment:
+      SITE: portfolio
+      CORS_ALLOW_ORIGIN: '*'
+      ZOPE_MODE: standalone
+      RELSTORAGE_DSN:  "dbname='mkh' user='admin' host='postgres' password='nimda'"
+    depends_on:
+      postgres:
+        condition: service_healthy 
+    ports:
+      - "8080:8080"
+    networks:
+      - plone-network
+
+  volto:
+    image: hydra/adminui
+    command: sh -c "make build && make prod"
+    environment:
+      RAZZLE_API_PATH: http://localhost:8080/portfolio
+      RAZZLE_DEFAULT_IFRAME_URL: http://localhost:3002
+      PORT: 3000
+    depends_on:
+      - plone
+    ports:
+      - "3000:3000"
+    networks:
+      - plone-network
+
+volumes:
+  postgres_data:
+
+networks:
+  plone-network:
