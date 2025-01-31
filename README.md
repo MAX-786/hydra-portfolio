@@ -150,3 +150,26 @@ if (window.location.search.includes('_edit')) {
 ## Learn More
 
 For more information on Volto Hydra, visit the [Volto Hydra GitHub repository](https://github.com/collective/volto-hydra).
+
+## Docker Image Setup
+
+*Note: I am no expert in docker and I build these as per the information I could find in my free time. If you got ANY ADVICE/IMPROVEMENT TIPS PLEASE OPEN AN TICKET AND LET ME KNOW. Thanks!*
+
+For setting up your docker image for adminUI, you can directly use `Dockerfile` to build an image:
+
+```bash
+# from root directory
+docker build . -t hydra/adminui
+```
+ 
+***NOTE:*** The current `Dockerfile` copies everything to image which increases its size *significantly*. Customize `Dockerfile` as per your requirement.
+
+Once your image is ready we will now start all three services: Postgresql DB, Plone Backend & AdminUI (volto-hydra)
+
+```bash
+docker compose up -d
+```
+
+Wait till all the images are pulled and get started!
+
+[TODO} Document about Env vars and other customization
