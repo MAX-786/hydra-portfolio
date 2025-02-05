@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  env: {
+    CMS_URL: 'http://52.66.140.114/mkhismkh/++api++',
+  },
   async rewrites() {
     return [
       {
