@@ -1,9 +1,10 @@
-# Stage 1: Build environment
+# Build environment
 FROM node:20 AS builder
 
 # Configure pnpm
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+RUN npm install -g corepack@latest
 RUN corepack enable
 
 # Install system dependencies
@@ -17,18 +18,19 @@ RUN rm -rf /app
 COPY --chown=node:node . /app
 RUN make install
 
-# Stage 2: Production environment
+# Production environment
 FROM node:20-slim
 
 WORKDIR /app
 COPY --from=builder /app /app
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+RUN npm install -g corepack@latest
 RUN corepack enable
-# Keep make available for production commands
+
 RUN apt-get update && \
     apt-get install -y make && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-# Expose port and start application
+# Expose port
 EXPOSE 3000

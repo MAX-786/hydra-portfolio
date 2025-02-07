@@ -17,3 +17,5 @@ examples/hydra-vue-f7/src/.vite-ssg-temp/
 # Local Netlify folder
 .netlify
 .vercel
+.env
+*.pem

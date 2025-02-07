@@ -1,3 +1,5 @@
+# This is a sample docker-compose file for deploying hydra (adminUI) 
+# with PostgresDB, Plone-backend and Nginx
 services:
   postgres:
     image: postgres:13
@@ -10,41 +12,50 @@ services:
     networks:
       - plone-network
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "admin"]
+      test: ['CMD', 'pg_isready', '-U', 'admin']
       interval: 10s
       retries: 5
       timeout: 5s
-    command: ["postgres", "-c", "hba_file=/var/lib/postgresql/data/pg_hba.conf"]
-
+    command: ['postgres', '-c', 'hba_file=/var/lib/postgresql/data/pg_hba.conf']
   plone:
     image: plone/plone-backend:latest
     environment:
-      SITE: portfolio
-      CORS_ALLOW_ORIGIN: '*'
-      ZOPE_MODE: standalone
-      RELSTORAGE_DSN:  "dbname='mkh' user='admin' host='postgres' password='nimda'"
+      SITE: mkhismkh
+      CORS_ALLOW_ORIGIN: 'https://mkhismkh.vercel.app'
+      RELSTORAGE_DSN: "dbname='mkh' user='admin' host='postgres' password='nimda'"
     depends_on:
       postgres:
-        condition: service_healthy 
-    ports:
-      - "8080:8080"
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', "timeout 5 bash -c 'echo > /dev/tcp/localhost/8080'"]
+      interval: 15s
+      retries: 30
+      timeout: 10s
     networks:
       - plone-network
-
   volto:
     image: hydra/adminui
     command: sh -c "make build && make prod"
     environment:
-      RAZZLE_API_PATH: http://localhost:8080/portfolio
-      RAZZLE_DEFAULT_IFRAME_URL: http://localhost:3002
+      RAZZLE_INTERNAL_API_PATH: http://plone:8080/mkhismkh
+      RAZZLE_DEFAULT_IFRAME_URL: https://mkhismkh.vercel.app
       PORT: 3000
     depends_on:
-      - plone
-    ports:
-      - "3000:3000"
+      plone:
+        condition: service_healthy
     networks:
       - plone-network
-
+  web:
+    image: nginx:latest
+    ports:
+      - '80:80' # Frontend (HTTP)
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - plone
+      - volto
+    networks:
+      - plone-network
 volumes:
   postgres_data:
 

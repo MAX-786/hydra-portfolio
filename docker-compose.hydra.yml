@@ -1,0 +1,23 @@
+services:
+  volto:
+    image: hydra/adminui
+    command: sh -c "make build && make prod"
+    environment:
+      RAZZLE_INTERNAL_API_PATH: ${RAZZLE_INTERNAL_API_PATH}
+      RAZZLE_DEFAULT_IFRAME_URL: https://mkhismkh.vercel.app
+      PORT: 3000
+    networks:
+      - plone-network
+  web:
+    image: nginx:latest
+    ports:
+      - '80:80' # Frontend (HTTP)
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - volto
+    networks:
+      - plone-network
+
+networks:
+  plone-network:

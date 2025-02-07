@@ -1,0 +1,27 @@
+services:
+  plone:
+    image: plone/plone-backend:latest
+    environment:
+      SITE: mkhismkh
+      CORS_ALLOW_ORIGIN: 'https://mkhismkh.vercel.app'
+      RELSTORAGE_DSN: "dbname='${AWS_RDS_DB_NAME}' user='${AWS_RDS_DB_USER}' host='${AWS_RDS_DB_ENDPOINT}' password='${AWS_RDS_DB_PASSWORD}'"
+    healthcheck:
+      test: ['CMD-SHELL', "timeout 5 bash -c 'echo > /dev/tcp/localhost/8080'"]
+      interval: 15s
+      retries: 30
+      timeout: 10s
+    networks:
+      - plone-network
+  web:
+    image: nginx:latest
+    ports:
+      - '80:80' # Frontend (HTTP)
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - plone
+    networks:
+      - plone-network
+
+networks:
+  plone-network:
