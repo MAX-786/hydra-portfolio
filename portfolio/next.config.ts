@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   env: {
-    CMS_URL: 'https://15.207.100.48/mkhismkh/++api++',
+    CMS_URL: 'https://15.207.100.48/++api++',
   },
   async rewrites() {
     return [
