@@ -2,6 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app',
+      },
+      {
+        protocol: "https",
+        hostname: "https://15.207.100.48",
+      }
+    ]
+  },
   env: {
     CMS_URL: 'https://15.207.100.48/mkhismkh/++api++',
   },
@@ -16,23 +28,6 @@ const nextConfig: NextConfig = {
         destination: "/", // Redirects to the root path
       },
     ];
-  },
-
-  images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8080", // Only if needed
-        pathname: "/my-portfolio/**",
-      },
-      // For production:
-      // {
-      //   protocol: 'https',
-      //   hostname: 'production-domain.com',
-      //   pathname: '/**',
-      // }
-    ],
   },
 };
 
