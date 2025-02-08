@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { getFullProjectList } from '@/lib/cms/client';
 import { ProjectDetails } from '@/types/cms';
 
+
 export default function ProjectSection() {
   const [activeProject, setActiveProject] = useState(0);
   const [projects, setProjects] = useState<ProjectDetails[]>([]);
@@ -16,7 +17,11 @@ export default function ProjectSection() {
     };
     fetchSkills();
   }, []);
-
+  const imageURL = new URL(projects[activeProject]?.image?.download || '');
+  const imageLoader = ({ src, width }) => {
+    return `${imageURL?.origin || ''}/${src}?w=${width}`
+  }
+  
   return (
     <section id="projects" className="py-16 h-[768]">
       <h2 className="mb-8 text-center text-3xl font-bold">Projects</h2>
@@ -29,8 +34,9 @@ export default function ProjectSection() {
             transition={{ duration: 0.5 }}
           >
             <Image
+              loader={imageLoader}
               src={
-                projects[activeProject]?.image?.download || '/placeholder.svg'
+                imageURL?.pathname || '/placeholder.svg'
               }
               alt={projects[activeProject]?.title || 'Project Image'}
               width={600}
