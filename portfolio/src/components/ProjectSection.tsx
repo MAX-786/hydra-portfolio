@@ -17,7 +17,9 @@ export default function ProjectSection() {
     };
     fetchSkills();
   }, []);
-  const imageURL = new URL(projects[activeProject]?.image?.download || '');
+  const imageURL = new URL(projects[activeProject]?.image?.download || 'http://localhost:3002/placeholder.svg');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const imageLoader = ({ src, width }) => {
     return `${imageURL?.origin || ''}/${src}?w=${width}`
   }
