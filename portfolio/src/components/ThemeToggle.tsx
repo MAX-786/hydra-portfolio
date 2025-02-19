@@ -3,6 +3,7 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
+import { MoonStar, Sun } from 'lucide-react';
 
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -10,7 +11,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed bottom-4 right-4 z-50 w-16 h-16 rounded-full bg-transparent transition-colors duration-200"
+      className="fixed bottom-3 right-10 z-50 w-16 h-16 rounded-full bg-transparent transition-colors duration-200"
       aria-label="Toggle theme"
     >
       <motion.div
@@ -30,16 +31,15 @@ const ThemeToggle: React.FC = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`w-10 h-10 ${
-            theme === 'light'
-              ? 'text-yellow-500 filter drop-shadow-glow-light'
-              : 'text-blue-300 filter drop-shadow-glow-dark'
-          }`}
+          className={`w-10 h-10 ${theme === 'light'
+              ? 'filter drop-shadow-glow-light'
+              : 'filter drop-shadow-glow-dark'
+            }`}
         >
           {theme === 'light' ? (
-            <circle cx="12" cy="12" r="5" />
+            <Sun color="#f5c211" />
           ) : (
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            <MoonStar />
           )}
         </svg>
       </motion.div>
