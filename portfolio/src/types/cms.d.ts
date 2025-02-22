@@ -58,6 +58,11 @@ type Image = {
 };
 
 export interface ProjectDetails extends ProjectListItem {
+  abstract: {
+    data: string | null;
+  };
+  github_url: Url;
+  demo: Url;
   id: string;
   image: Image;
   date: string;
@@ -65,7 +70,6 @@ export interface ProjectDetails extends ProjectListItem {
   modified: string;
   effective: string | null;
   expires: string | null;
-  live_demo_url: string | null;
   tech_stack: string[];
   items: unknown[];
   language: {
